@@ -9,23 +9,29 @@
 #pragma once
 
 #include "core/object.h"
+#include "firebase_cloud_messaging_delegate.h"
 
 class FirebaseCloudMessaging : public Object {
     GDCLASS(FirebaseCloudMessaging, Object);
     
     static void _bind_methods();
-    static String _token;
-    static Dictionary _message;
-    
+
+    String token;
+    Dictionary message;
+
+    static FirebaseCloudMessaging* instance;
+    static FCMDelegate* fcm_delegate;
 public:
-    String get_token ();
-    Dictionary get_message ();
+    String get_token();
+    Dictionary get_message();
 
     FirebaseCloudMessaging();
     ~FirebaseCloudMessaging();
     
     void token_received(String t);
     void message_received(Dictionary m);
+
+    static FirebaseCloudMessaging* get_instance();
 };
 
 
